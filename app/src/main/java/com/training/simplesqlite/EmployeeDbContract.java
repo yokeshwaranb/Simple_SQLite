@@ -17,13 +17,13 @@ public class EmployeeDbContract {
         public static final String COLUMN_DESIGNATION = "designation";
     }
 
-    private static final String SQL_CREATE_ENTRIES =
+    public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + EmployeeEntry.TABLE_NAME + " (" +
                     EmployeeEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTO INCREMENT," +
                     EmployeeEntry.COLUMN_NAME + " TEXT NOT NULL," +
                     EmployeeEntry.COLUMN_DOB + " INTEGER NOT NULL," +
                     EmployeeEntry.COLUMN_DESIGNATION + " TEXT NOT NULL)";
 
-    private static final String SQL_DELETE_ENTRIES =
+    public static final String SQL_DROP_TABLE =
             "DROP TABLE IF EXISTS " + EmployeeEntry.TABLE_NAME;
 }
