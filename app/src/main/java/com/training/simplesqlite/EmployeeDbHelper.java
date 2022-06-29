@@ -19,6 +19,10 @@ public class EmployeeDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Employee.db";
 
+    public EmployeeDbHelper(@NonNull Context context) {
+        this(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
     public EmployeeDbHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         Log.d(TAG, "EmployeeDbHelper constructor");
