@@ -94,14 +94,16 @@ public class AddEmployeeActivity extends AppCompatActivity {
             String designation = etDesignation.getText().toString();
             long dob = myCalendar.getTimeInMillis();
 
+            // Gets the data repository in write mode
             SQLiteDatabase db = employeeDbHelper.getWritableDatabase();
 
-
+            // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
             values.put(EmployeeDbContract.EmployeeEntry.COLUMN_NAME, name);
             values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DESIGNATION, designation);
             values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DOB, dob);
 
+            // Insert the new row, returning the primary key value of the new row
             long result = db.insert(EmployeeDbContract.EmployeeEntry.TABLE_NAME, null, values);
 
             setResult(RESULT_OK, new Intent());
