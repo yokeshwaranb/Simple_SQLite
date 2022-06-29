@@ -120,6 +120,26 @@ public class DataManager {
         Log.d(TAG, "Employee: " + employee);
         resultCursor.close();
         return employee;
+    }
 
+    public static void updateEmployee(EmployeeDbHelper employeeDbHelper, Employee employee) {
+
+        SQLiteDatabase sqLiteDb = employeeDbHelper.getReadableDatabase();
+
+        // New value for required column(s)
+        ContentValues values = new ContentValues();
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_NAME, employee.getName());
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DESIGNATION, employee.getDesignation());
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DOB, employee.getDob());
+
+        // Which row to update, based on the id
+        String selection = EmployeeDbContract.EmployeeEntry.COLUMN_ID + " LIKE ? ";
+        String[] selectionArgs = {String.valueOf(employee.getId())};
+
+        sqLiteDb.update(EmployeeDbContract.EmployeeEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs
+        );
     }
 }
