@@ -29,4 +29,14 @@ public class Employee {
     public String getDesignation() {
         return designation;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dob=" + dob +
+                ", designation='" + designation + '\'' +
+                '}';
+    }
 }
