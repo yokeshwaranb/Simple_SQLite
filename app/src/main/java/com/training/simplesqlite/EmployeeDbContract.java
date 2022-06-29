@@ -8,6 +8,10 @@ public class EmployeeDbContract {
     // make the constructor private.
     private EmployeeDbContract() {}
 
+    // If you change the database schema, you must increment the database version.
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Employee.db";
+
     /* Inner class that defines the table contents */
     public static class EmployeeEntry implements BaseColumns {
         public static final String TABLE_NAME = "employee";

@@ -15,12 +15,8 @@ public class EmployeeDbHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "MyEmployeeDbHelper";
 
-    // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "Employee.db";
-
     public EmployeeDbHelper(@NonNull Context context) {
-        this(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this(context, EmployeeDbContract.DATABASE_NAME, null, EmployeeDbContract.DATABASE_VERSION);
     }
 
     public EmployeeDbHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
