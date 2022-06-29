@@ -158,4 +158,14 @@ public class DataManager {
                 selectionArgs
         );
     }
+
+    public static int deleteAllEmployees(EmployeeDbHelper employeeDbHelper) {
+
+        SQLiteDatabase sqLiteDb = employeeDbHelper.getWritableDatabase();
+
+        return sqLiteDb.delete(EmployeeDbContract.EmployeeEntry.TABLE_NAME,
+                null,
+                null
+        );
+    }
 }
