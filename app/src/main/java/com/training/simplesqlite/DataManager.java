@@ -142,4 +142,20 @@ public class DataManager {
                 selectionArgs
         );
     }
+
+    public static int deleteEmployee(EmployeeDbHelper employeeDbHelper, long empId) {
+
+        SQLiteDatabase sqLiteDb = employeeDbHelper.getWritableDatabase();
+
+        // Define 'where' part of query
+        String selection = EmployeeDbContract.EmployeeEntry.COLUMN_ID + " LIKE ? ";
+        // Specify arguments in placeholder order
+        String[] selectionArgs = {String.valueOf(empId)};
+
+        // Issue SQL statement
+        return sqLiteDb.delete(EmployeeDbContract.EmployeeEntry.TABLE_NAME,
+                selection,
+                selectionArgs
+        );
+    }
 }
