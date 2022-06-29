@@ -55,7 +55,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         etDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUpCalender(dateSetListener);
+                setUpCalender(dateSetListener, v);
             }
         });
 
@@ -114,8 +114,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
         }
     }
 
-    private void setUpCalender(DatePickerDialog.OnDateSetListener dateSetListener) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getApplicationContext(),
+    private void setUpCalender(DatePickerDialog.OnDateSetListener dateSetListener, View view) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(view.getContext(),
                 dateSetListener,
                 myCalendar.get(Calendar.YEAR),
                 myCalendar.get(Calendar.MONTH),
