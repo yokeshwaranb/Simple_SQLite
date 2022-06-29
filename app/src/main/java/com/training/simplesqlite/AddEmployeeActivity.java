@@ -20,7 +20,6 @@ import java.util.Locale;
 public class AddEmployeeActivity extends AppCompatActivity {
 
     private Calendar myCalendar = Calendar.getInstance();
-    private EmployeeDbHelper employeeDbHelper;
 
     private EditText etDOB;
     private EditText etEmpName;
@@ -38,8 +37,6 @@ public class AddEmployeeActivity extends AppCompatActivity {
         etDesignation = findViewById(R.id.etDesignation);
         btnSave = findViewById(R.id.bSave);
         btnCancel = findViewById(R.id.bCancel);
-
-        employeeDbHelper = new EmployeeDbHelper(this);
 
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -94,17 +91,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
             String designation = etDesignation.getText().toString();
             long dob = myCalendar.getTimeInMillis();
 
-            // Gets the data repository in write mode
-            SQLiteDatabase db = employeeDbHelper.getWritableDatabase();
-
-            // Create a new map of values, where column names are the keys
-            ContentValues values = new ContentValues();
-            values.put(EmployeeDbContract.EmployeeEntry.COLUMN_NAME, name);
-            values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DESIGNATION, designation);
-            values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DOB, dob);
-
-            // Insert the new row, returning the primary key value of the new row
-            long result = db.insert(EmployeeDbContract.EmployeeEntry.TABLE_NAME, null, values);
+            EmployeeDbHelper employeeDbHelper = new EmployeeDbHelper(getApplicationContext());
+            long result = DataManager.insertEmployee(employeeDbHelper, name, dob, designation);
 
             setResult(RESULT_OK, new Intent());
 

@@ -1,5 +1,6 @@
 package com.training.simplesqlite;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -53,5 +54,21 @@ public class DataManager {
         resultCursor.close();
 
         return employees;
+    }
+
+    public static long insertEmployee(EmployeeDbHelper employeeDbHelper, String name, long dob, String designation) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = employeeDbHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_NAME, name);
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DESIGNATION, designation);
+        values.put(EmployeeDbContract.EmployeeEntry.COLUMN_DOB, dob);
+
+        // Insert the new row, returning the primary key value of the new row
+        long resultId = db.insert(EmployeeDbContract.EmployeeEntry.TABLE_NAME, null, values);
+
+        return resultId;
     }
 }
